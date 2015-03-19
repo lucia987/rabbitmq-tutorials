@@ -3,13 +3,13 @@
 
 require "bunny"
 
-conn = Bunny.new(:automatically_recover => false)
+conn = Bunny.new(:automatically_recover => false, :hostname => "10.205.20.175")
 conn.start
 
 ch   = conn.create_channel
 q    = ch.queue("hello")
 
-ch.default_exchange.publish("Hello World!", :routing_key => q.name)
+ch.default_exchange.publish("Hello World!", :persistent => false, :routing_key => q.name)
 puts " [x] Sent 'Hello World!'"
 
 conn.close

@@ -7,7 +7,7 @@ if ARGV.empty?
   abort "Usage: #{$0} [info] [warning] [error]"
 end
 
-conn = Bunny.new(:automatically_recover => false)
+conn = Bunny.new(:automatically_recover => false, :hostname => "10.205.20.175")
 conn.start
 
 ch  = conn.create_channel
